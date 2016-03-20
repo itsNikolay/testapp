@@ -1,1 +1,1 @@
-docker build itsnikolay/testapp .
+docker build -t testapp -f Dockerfile.production .
