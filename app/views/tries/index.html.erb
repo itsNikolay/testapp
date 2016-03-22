@@ -1,3 +1,10 @@
 <h1>
-  Tried <%= @try.count %> times
+  Tried <span style="color:red;"><%= @try.count %></span> times
 </h1>
+
+<pre>
+<b>DATABASE:</b>
+<%= JSON.pretty_generate(@cfg) %>
+<b>ENV:</b> 
+<%= JSON.pretty_generate(ENV.to_hash) %>
+</pre>

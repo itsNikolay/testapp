@@ -6,6 +6,7 @@ class TriesController < ApplicationController
   def index
     @try = Try.first || Try.create(count: 0)
     @try.increment!(:count)
+    @cfg = Rails.configuration.database_configuration[ENV['RAILS_ENV']]
   end
 
   # GET /tries/1

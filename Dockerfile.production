@@ -1,7 +1,8 @@
-FROM ruby:2.2
+FROM ruby:2.3
 
 ENV APP_HOME /myapp
 ENV RAILS_ENV production
+ENV GEM_HOME /bundle
 
 # Nodejs
 RUN set -ex \
@@ -33,11 +34,7 @@ ADD . $APP_HOME
 WORKDIR $APP_HOME
 
 ADD Gemfile* $APP_HOME/
-
 RUN bundle --deployment
-RUN bin/rake db:migrate
 RUN bin/rake assets:precompile --trace
+
 RUN mkdir -p shared/log shared/sockets shared/pids
-
-
-CMD bundle exec puma -C config/puma.rb

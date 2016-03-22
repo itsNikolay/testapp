@@ -1,6 +1,9 @@
+run docker terminal
+cd ~/projects/github.com/itsNikolay/testapp
+
 docker build -t testapp -f Dockerfile.production .
-docker run testapp
-docker ps
+docker run -d testapp
+docker ps -l
 docker commit -m "initial" 49357a2eb766 itsnikolay/testap
 docker login
 docker push itsnikolay/testapp
