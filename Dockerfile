@@ -33,7 +33,6 @@ COPY . $APP_HOME
 WORKDIR $APP_HOME
 RUN rm -rf $APP_HOME/.git
 
-RUN bundle --deployment
-RUN bin/rake assets:precompile --trace
-
 VOLUME $APP_HOME
+
+COPY docker-entrypoint.sh .
