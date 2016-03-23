@@ -2,7 +2,6 @@ FROM ruby:2.3
 
 ENV APP_HOME /myapp
 ENV RAILS_ENV production
-ENV GEM_HOME /bundle
 
 # Nodejs
 RUN set -ex \
@@ -30,11 +29,11 @@ RUN curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-
   && rm "node-v$NODE_VERSION-linux-x64.tar.xz" SHASUMS256.txt.asc SHASUMS256.txt
 # Nodejs
 
-ADD . $APP_HOME
+COPY . $APP_HOME
 WORKDIR $APP_HOME
+RUN rm -rf $APP_HOME/.git
 
-ADD Gemfile* $APP_HOME/
 RUN bundle --deployment
 RUN bin/rake assets:precompile --trace
 
-RUN mkdir -p shared/log shared/sockets shared/pids
+VOLUME $APP_HOME

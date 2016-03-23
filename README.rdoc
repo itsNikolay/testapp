@@ -1,9 +1,11 @@
 run docker terminal
 cd ~/projects/github.com/itsNikolay/testapp
 
-docker build -t testapp -f Dockerfile.production .
-docker run -d testapp
-docker ps -l
-docker commit -m "initial" 49357a2eb766 itsnikolay/testap
+ dockerrun -it -v /bundle --name bundle busybox true
+
+docker build -t itsnikolay/testapp:0.7 -f Dockerfile .
+docker run -d -it itsnikolay/testapp:0.7 bash
+
+docker commit $(docker ps -lq) itsnikolay/testapp:0.7
 docker login
-docker push itsnikolay/testapp
+docker push itsnikolay/testapp:0.7
