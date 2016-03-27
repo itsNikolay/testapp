@@ -1,10 +1,21 @@
-<h1>
-  Tried <span style="color:red;"><%= @try.count %></span> times
-</h1>
+<div style="width:50%;float:left;overflow:hidden;">
+  <h1>
+    Tried <span style="color:red;"><%= @try.count %></span> times
+  </h1>
+</div>
 
-<pre>
-<b>DATABASE:</b>
-<%= JSON.pretty_generate(@cfg) %>
-<b>ENV:</b> 
-<%= JSON.pretty_generate(ENV.to_hash) %>
-</pre>
+<div style="width:50%;float:left;overflow:hidden;">
+  <h1>
+    Async Tried <span style="color:red;"><%= @async_try.count %></span> times
+  </h1>
+  <%= link_to('Perform AsyncTry incrementation', increment_async_try_path) %>
+</div>
+
+<div style="width:100%;float:left;overflow:hidden;">
+  <pre>
+  <b>DATABASE:</b>
+  <%= JSON.pretty_generate(@cfg) %>
+  <b>ENV:</b> 
+  <%= JSON.pretty_generate(ENV.to_hash) %>
+  </pre>
+</div>

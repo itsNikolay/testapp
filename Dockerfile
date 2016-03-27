@@ -29,10 +29,11 @@ RUN curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-
   && rm "node-v$NODE_VERSION-linux-x64.tar.xz" SHASUMS256.txt.asc SHASUMS256.txt
 # Nodejs
 
-COPY . $APP_HOME
+ADD . $APP_HOME
 WORKDIR $APP_HOME
 RUN rm -rf $APP_HOME/.git
 
 VOLUME $APP_HOME
 
 COPY docker-entrypoint.sh .
+COPY docker-entrypoint-sidekiq.sh .

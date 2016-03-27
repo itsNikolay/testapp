@@ -7,6 +7,12 @@ class TriesController < ApplicationController
     @try = Try.first || Try.create(count: 0)
     @try.increment!(:count)
     @cfg = Rails.configuration.database_configuration[ENV['RAILS_ENV']]
+    @async_try = AsyncTry.first || AsyncTry.create(count: 0)
+  end
+
+  def increment_async_try
+    AsyncTryIncrementWorker.perform_async
+    redirect_to(action: :index)
   end
 
   # GET /tries/1

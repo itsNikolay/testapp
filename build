@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION="0.15"
+VERSION="0.18"
 
 docker build -t itsnikolay/testapp:$VERSION -f Dockerfile .
 docker run -d -it itsnikolay/testapp:$VERSION bash
